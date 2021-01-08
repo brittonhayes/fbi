@@ -41,6 +41,22 @@ func (f *Fugitives) List() error {
 	return nil
 }
 
+// ListPretty lists all fugitives from the Most Wanted API and then
+// auto formats results as pretty-printed JSON
+func (f *Fugitives) ListPretty() ([]byte, error) {
+	err := f.List()
+	if err != nil {
+		return nil, err
+	}
+
+	j, err := json.MarshalIndent(&f, "", "\t")
+	if err != nil {
+		return nil, err
+	}
+
+	return j, nil
+}
+
 // Fugitives is the base structure for the
 // FBI most wanted REST API response and
 // contains a list of individuals as well as the

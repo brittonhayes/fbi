@@ -17,20 +17,43 @@ go get -u github.com/brittonhayes/fbi
 ### Usage
 
 ```
-import (
-	"encoding/json"
-	"fmt"
-	"github.com/brittonhayes/fbi"
-)
-
 func main() {
+	// Initialize fugitives
 	f := new(fbi.Fugitives)
-	f.List()
-	j, err := json.MarshalIndent(&f, "", "\t")
+
+	// List the fugitives as pretty-printed json
+	err := f.List()
+	if err != nil {
+			// handle error
+			panic(err)
+	}
+
+	// Print raw results
+	fmt.Println(f)
+
+	// Print specific items from the list of results
+	fmt.Println(f.Items[0])
+
+}
+```
+
+### Pretty Print Results
+
+```
+func main() {
+	// Initialize fugitives
+	f := new(fbi.Fugitives)
+
+	// Pretty print the results as JSON
+	// List the fugitives as pretty-printed json
+	j, err := f.ListPretty()
 	if err != nil {
 		panic(err)
 	}
+
+	// Print out the results
 	fmt.Println(string(j))
+
 }
 ```
 
@@ -48,6 +71,7 @@ Source API: https://api.fbi.gov/wanted/v1/list
 - [type Fugitives](<#type-fugitives>)
   - [func (f *Fugitives) Find(opt *Options) error](<#func-fugitives-find>)
   - [func (f *Fugitives) List() error](<#func-fugitives-list>)
+  - [func (f *Fugitives) ListPretty() ([]byte, error)](<#func-fugitives-listpretty>)
 - [type Images](<#type-images>)
   - [func (i Images) Download(filename string) error](<#func-images-download>)
 - [type Individual](<#type-individual>)
@@ -79,6 +103,7 @@ FBI contains the methods available to the Individual type
 ```go
 type FBI interface {
     List() error
+    ListPretty() ([]byte, error)
     Find(opt *Options) error
 }
 ```
@@ -119,13 +144,23 @@ type Fugitives struct {
 func (f *Fugitives) Find(opt *Options) error
 ```
 
-Find fugitives from the options provided
+Find all fugitives matching the parameters provided in the opt struct
 
 ### func \(\*Fugitives\) List
 
 ```go
 func (f *Fugitives) List() error
 ```
+
+List all fugitives from the Most Wanted API
+
+### func \(\*Fugitives\) ListPretty
+
+```go
+func (f *Fugitives) ListPretty() ([]byte, error)
+```
+
+ListPretty lists all fugitives from the Most Wanted API and then auto formats results as pretty\-printed JSON
 
 ## type Images
 
@@ -150,7 +185,7 @@ Download images to a file from the URLs provided
 
 ## type Individual
 
-Individual represents a single person in the FBI most wanted list\.
+Individual represents a single person in the FBI most wanted list
 
 ```go
 type Individual struct {

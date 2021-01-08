@@ -8,6 +8,7 @@ var _ Downloader = (*Files)(nil)
 // to the Individual type
 type FBI interface {
 	List() error
+	ListPretty() ([]byte, error)
 	Find(opt *Options) error
 }
 

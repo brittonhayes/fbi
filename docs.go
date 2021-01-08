@@ -2,25 +2,47 @@
 //
 // Installation
 //
-//	go get -u github.com/brittonhayes/fbi
+//		go get -u github.com/brittonhayes/fbi
 //
 //
 // Usage
 //
-//	import (
-//		"encoding/json"
-//		"fmt"
-//		"github.com/brittonhayes/fbi"
-//	)
+//	func main() {
+//		// Initialize fugitives
+//		f := new(fbi.Fugitives)
+//
+//		// List the fugitives as pretty-printed json
+//		err := f.List()
+//		if err != nil {
+//				// handle error
+//				panic(err)
+//		}
+//
+//		// Print raw results
+//		fmt.Println(f)
+//
+//		// Print specific items from the list of results
+//		fmt.Println(f.Items[0])
+//
+//	}
+//
+//
+// Pretty Print Results
 //
 //	func main() {
+//		// Initialize fugitives
 //		f := new(fbi.Fugitives)
-//		f.List()
-//		j, err := json.MarshalIndent(&f, "", "\t")
+//
+//		// Pretty print the results as JSON
+//		// List the fugitives as pretty-printed json
+//		j, err := f.ListPretty()
 //		if err != nil {
 //			panic(err)
 //		}
+//
+//		// Print out the results
 //		fmt.Println(string(j))
+//
 //	}
 //
 // Reference
