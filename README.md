@@ -24,8 +24,8 @@ func main() {
 	// List the fugitives as pretty-printed json
 	err := f.List()
 	if err != nil {
-			// handle error
-			panic(err)
+	    // handle error
+		panic(err)
 	}
 
 	// Print raw results
