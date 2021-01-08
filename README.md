@@ -21,7 +21,7 @@ func main() {
 	// Initialize fugitives
 	f := new(fbi.Fugitives)
 
-	// List the fugitives as pretty-printed json
+	// List the fugitives
 	err := f.List()
 	if err != nil {
 	    // handle error
@@ -44,7 +44,6 @@ func main() {
 	// Initialize fugitives
 	f := new(fbi.Fugitives)
 
-	// Pretty print the results as JSON
 	// List the fugitives as pretty-printed json
 	j, err := f.ListPretty()
 	if err != nil {
