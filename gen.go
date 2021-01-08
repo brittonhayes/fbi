@@ -1,0 +1,3 @@
+package fbi
+
+//go:generate gomarkdoc ./...
