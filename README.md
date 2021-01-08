@@ -251,9 +251,14 @@ Options contains the available query params for filter API request results
 
 ```go
 type Options struct {
-    Title        string `url:"title"`
-    FieldOffices string `url:"field_offices"`
-    Page         int    `url:"page"`
+    Title                string `url:"title"`
+    FieldOffices         string `url:"field_offices"`
+    Status               string `url:"status"`
+    PersonClassification string `url:"person_classification"`
+    Page                 int    `url:"page"`
+    Limit                int    `url:"pageSize"`
+    SortOn               string `url:"sort_on"`
+    SortOrder            string `url:"sort_order"`
 }
 ```
 
